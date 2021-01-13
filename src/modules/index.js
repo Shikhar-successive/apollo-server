@@ -4,13 +4,13 @@ import * as user from './user';
 
 const dir = path.resolve();
 const types = fileLoader(path.join(dir, './**/*.graphql'));
-const typeDef = mergeTypes(types, { all: true });
+const typeDefs = mergeTypes(types, { all: true });
 
 export default {
   resolvers: {
     Query: {
-      ...user.Query,
+      ...user.getProfile,
     },
   },
-  typeDef,
+  typeDefs,
 };

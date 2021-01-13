@@ -28,7 +28,7 @@ class Server {
           resolve('I am OK');
         }),
       });
-      this.server.applyMiddleware({ app });
+      this.Server.applyMiddleware({ app });
       this.run();
     } catch (err) {
       console.log(err);
