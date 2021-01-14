@@ -1,3 +1,10 @@
 type Query {
     getProfile: User!
+    getAll: [User]
+}
+
+type Mutation {
+  create(user: CreateUserInput): User!
+  update(id: ID!, email: String, role: String): User!
+  delete(id: ID): User!
 }

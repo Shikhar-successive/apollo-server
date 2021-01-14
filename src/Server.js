@@ -15,7 +15,7 @@ class Server {
   setupRoutes() {
     const { app } = this;
     app.get('/', (req, res) => {
-      res.send('Running Express app');
+      res.send('Running Express app, Add "/graphql" to url to redirect to PLAYGROUND');
     });
   }
 
@@ -42,7 +42,7 @@ class Server {
       if (err) {
         console.log(err);
       } else {
-        console.log(`App is runing on port ${PORT}`);
+        console.log(`App is runing on port ${PORT}, http://localhost:8000/`);
       }
       return this;
     });
