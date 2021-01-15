@@ -8,3 +8,9 @@ type Mutation {
   update(id: ID!, email: String, role: String): User!
   delete(id: ID): User!
 }
+
+type Subscription {
+  traineeAdded: User!
+  traineeUpdated: User!
+  traineeDeleted: ID!
+}

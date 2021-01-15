@@ -15,6 +15,9 @@ export default {
     Mutation: {
       ...trainee.mutation,
     },
+    Subscription: {
+      ...trainee.subscriptions,
+    },
   },
   typeDefs,
 };
