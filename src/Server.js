@@ -1,5 +1,6 @@
 import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
+import { createServer } from 'http';
 
 class Server {
   constructor(config) {
@@ -15,7 +16,7 @@ class Server {
   setupRoutes() {
     const { app } = this;
     app.get('/', (req, res) => {
-      res.send('Running Express app');
+      res.send('Running Express app, Add "/graphql" to url to redirect to PLAYGROUND');
     });
   }
 
@@ -29,6 +30,8 @@ class Server {
         }),
       });
       this.Server.applyMiddleware({ app });
+      this.httpServer = createServer(app);
+      this.Server.installSubscriptionHandlers(this.httpServer);
       this.run();
     } catch (err) {
       console.log(err);
@@ -36,13 +39,12 @@ class Server {
   }
 
   run() {
-    const { app, config: { PORT } } = this;
-    console.log(PORT);
-    app.listen(PORT, (err) => {
+    const { config: { PORT } } = this;
+    this.httpServer.listen(PORT, (err) => {
       if (err) {
         console.log(err);
       } else {
-        console.log(`App is runing on port ${PORT}`);
+        console.log(`App is runing on port ${PORT}, http://localhost:8000/`);
       }
       return this;
     });
