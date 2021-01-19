@@ -1,10 +1,11 @@
 import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
+import { UserApi } from './datasource/User';
 
 class Server {
-  constructor(config) {
-    this.config = config;
+  constructor(configuration) {
+    this.configuration = configuration;
     this.app = Express();
   }
 
@@ -25,6 +26,10 @@ class Server {
       const { app } = this;
       this.Server = new ApolloServer({
         ...schema,
+        dataSources: () => {
+          const userApi = new UserApi();
+          return { userApi };
+        },
         onHealthCheck: () => new Promise((resolve) => {
           resolve('I am OK');
         }),
@@ -39,7 +44,7 @@ class Server {
   }
 
   run() {
-    const { config: { PORT } } = this;
+    const { configuration: { PORT } } = this;
     this.httpServer.listen(PORT, (err) => {
       if (err) {
         console.log(err);
