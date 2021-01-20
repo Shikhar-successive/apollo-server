@@ -2,6 +2,7 @@ import Express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { createServer } from 'http';
 import { UserApi } from './datasource/User';
+import { TraineeApi } from './datasource/Trainee';
 
 class Server {
   constructor(configuration) {
@@ -28,7 +29,15 @@ class Server {
         ...schema,
         dataSources: () => {
           const userApi = new UserApi();
-          return { userApi };
+          const traineeApi = new TraineeApi();
+          return { userApi, traineeApi };
+        },
+        context: ({ req }) => {
+          if (req) {
+            // console.log(req.headers.authorization);
+            return { token: req.headers.authorization };
+          }
+          return {};
         },
         onHealthCheck: () => new Promise((resolve) => {
           resolve('I am OK');

@@ -1,17 +1,17 @@
 type Query {
-    getProfile: User!
-    getAll: [User]
+    getMe: User!
+    getAll: [getAllType]!
 }
 
 type Mutation {
   create(user: CreateUserInput): User!
-  update(id: ID!, email: String, role: String): User!
-  delete(id: ID): User!
+  update(originalId: ID!, name: String, email: String, role: String, password: String, updatedBy: String!): UpdatedUser!
+  delete(id: ID!): ID!
   loginUser(payload: loginData): String!
 }
 
 type Subscription {
   traineeAdded: User!
-  traineeUpdated: User!
+  traineeUpdated: UpdatedUser!
   traineeDeleted: ID!
 }

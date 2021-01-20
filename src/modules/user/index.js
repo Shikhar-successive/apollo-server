@@ -1,2 +1,2 @@
-export { default as getProfile } from './query';
-export { default as loginMutation } from './mutation';
+export { default as getMe } from './query';
+export { default as loginUser } from './mutation';
