@@ -12,7 +12,7 @@ export class TraineeApi extends RESTDataSource {
     request.headers.set('Authorization', this.context.token);
   }
 
-  getAll() {
+  async getAll() {
     return this.get('/getall');
   }
 
