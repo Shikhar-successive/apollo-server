@@ -6,13 +6,30 @@ input CreateUserInput {
   createdBy: String!
 }
 
+input pagination {
+  skip: Int
+  limit: Int
+}
+
 type getAllType {
-  _id: String!
-  name: String!
-  email: String!
-  role: String!
-  originalId: String!
-  createdAt: String!
+  status: String
+  message: String
+  data: Traineedata
+}
+
+type Traineedata {
+  totalRecords: Int
+  count: Int
+  records: [Trainee]
+}
+
+type Trainee {
+  _id: String
+  name: String
+  email: String
+  role: String
+  password: String
+  createdAt: String
 }
 
 type UpdatedUser {

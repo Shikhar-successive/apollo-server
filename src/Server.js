@@ -34,7 +34,6 @@ class Server {
         },
         context: ({ req }) => {
           if (req) {
-            // console.log(req.headers.authorization);
             return { token: req.headers.authorization };
           }
           return {};
@@ -58,7 +57,7 @@ class Server {
       if (err) {
         console.log(err);
       } else {
-        console.log(`App is runing on port ${PORT}, http://localhost:8000/`);
+        console.log(`App is runing on port ${PORT}, http://localhost:${PORT}`);
       }
       return this;
     });

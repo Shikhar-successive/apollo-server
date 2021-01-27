@@ -1,6 +1,6 @@
 type Query {
     getMe: User!
-    getAll: [getAllType]!
+    getAllTrainee(display: pagination): getAllType!
 }
 
 type Mutation {

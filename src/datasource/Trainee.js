@@ -12,8 +12,11 @@ export class TraineeApi extends RESTDataSource {
     request.headers.set('Authorization', this.context.token);
   }
 
-  async getAll() {
-    return this.get('/getall');
+  async getAllTrainee({ skip, limit }) {
+    console.log('Datasource getAll');
+    const response = await this.get('/getall', { skip, limit });
+    console.log(response);
+    return response;
   }
 
   create(data) {

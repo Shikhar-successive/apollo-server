@@ -1,7 +1,9 @@
 export default {
-  getAll: async (parent, args, context) => {
+  getAllTrainee: async (parent, args, context) => {
+    const { display: { skip, limit } } = args;
     const { dataSources: { traineeApi } } = context;
-    const response = await traineeApi.getAll();
-    return response.data.records;
+    console.log('query', skip, limit);
+    const response = await traineeApi.getAllTrainee({ skip, limit });
+    return response;
   },
 };

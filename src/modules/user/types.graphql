@@ -1,9 +1,10 @@
 type User {
+    _id: String!
     name: String!
     email: String!
     role: String!
     password: String!
-    createdBy: String!
+    createdAt: String!
 }
 
 input loginData {
