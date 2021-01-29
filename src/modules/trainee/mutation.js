@@ -7,28 +7,27 @@ export default {
     const { dataSources: { traineeApi } } = context;
     const response = await traineeApi.create(user);
     pubsuObject.publish(constant.subscriptions.TRAINEE_ADDED, { traineeAdded: response.data.data });
-    return response.data.data;
+    return response;
   },
 
   update: async (parent, args, context) => {
-    const {
-      originalId, name, role, email, password, updatedBy,
-    } = args;
+    const { user } = args;
     const { dataSources: { traineeApi } } = context;
-    const response = await traineeApi.update(originalId, name, role, email, password, updatedBy);
+    const response = await traineeApi.update(user);
     pubsuObject.publish(constant.subscriptions.TRAINEE_UPDATED,
       { traineeUpdated: response.data.Details });
-    return response.data.Details;
+    return response;
   },
 
-  delete: async (parent, args, context) => {
-    const { id } = args;
+  deleteUser: async (parent, args, context) => {
+    const { user } = args;
+    const { originalId } = user;
     const { dataSources: { traineeApi } } = context;
-    const response = await traineeApi.deleteUser(id);
+    const response = await traineeApi.deleteUser(originalId);
     pubsuObject.publish(
       constant.subscriptions.TRAINEE_DELETED,
       { traineeDeleted: response.data.id },
     );
-    return response.data.id;
+    return response;
   },
 };

@@ -16,10 +16,8 @@ export class UserApi extends RESTDataSource {
   }
 
   async loginUser(payload) {
-    // console.log('login--------');
     try {
       const res = await this.post('/login', payload);
-      // console.log(res, '============');
       return res.Data;
     } catch (error) {
       if (!(error.extensions)) {

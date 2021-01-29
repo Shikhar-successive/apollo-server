@@ -11,10 +11,38 @@ input pagination {
   limit: Int
 }
 
+input UpdateUserInput {
+  originalId: ID!
+  name: String
+  email: String
+  role: String
+  updatedBy: String!
+}
+
+input DeleteUserInput {
+  originalId: ID!
+}
+
+type ResponseUser {
+  status: String
+  message: String
+  data: Trainee
+}
+
 type getAllType {
   status: String
   message: String
   data: Traineedata
+}
+
+type DeleteUser {
+  status: String
+  message: String
+  data: DeleteData
+}
+
+type DeleteData {
+  id: ID
 }
 
 type Traineedata {
@@ -30,6 +58,7 @@ type Trainee {
   role: String
   password: String
   createdAt: String
+  originalId: String
 }
 
 type UpdatedUser {

@@ -4,7 +4,7 @@ type User {
     email: String!
     role: String!
     password: String!
-    createdAt: String!
+    createdAt: String
 }
 
 input loginData {

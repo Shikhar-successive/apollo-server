@@ -4,9 +4,9 @@ type Query {
 }
 
 type Mutation {
-  create(user: CreateUserInput): User!
-  update(originalId: ID!, name: String, email: String, role: String, password: String, updatedBy: String!): UpdatedUser!
-  delete(id: ID!): ID!
+  create(user: CreateUserInput): ResponseUser!
+  update(user: UpdateUserInput): ResponseUser!
+  deleteUser(user: DeleteUserInput): DeleteUser!
   loginUser(payload: loginData): String!
 }
 

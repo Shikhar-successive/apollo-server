@@ -13,27 +13,37 @@ export class TraineeApi extends RESTDataSource {
   }
 
   async getAllTrainee({ skip, limit }) {
-    console.log('Datasource getAll');
     const response = await this.get('/getall', { skip, limit });
-    console.log(response);
     return response;
   }
 
-  create(data) {
+  async create(data) {
     const newTrainee = new Object({ ...data });
-    return this.post('/create', newTrainee);
+    try {
+      const response = await this.post('/create', newTrainee);
+      return response;
+    } catch (error) {
+      return error.extensions.response.body;
+    }
   }
 
-  update(originalId, name, role, email, password, updatedBy) {
-    const data = {
-      originalId, name, role, email, password, updatedBy,
-    };
+  async update(data) {
     const updateTrainee = new Object({ ...data });
-    return this.put('/update', updateTrainee);
+    try {
+      const response = await this.put('/update', updateTrainee);
+      return response;
+    } catch (error) {
+      return error.extensions.response.body;
+    }
   }
 
-  deleteUser(id) {
+  async deleteUser(id) {
     const path = '/delete/'.concat(id);
-    return this.delete(path);
+    try {
+      const response = await this.delete(path);
+      return response;
+    } catch (error) {
+      return error.extensions.response.body;
+    }
   }
 }
