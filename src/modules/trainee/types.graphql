@@ -1,0 +1,46 @@
+input CreateUserInput {
+  name: String!
+  email: String!
+  role: String!
+  password: String!
+  createdBy: String!
+}
+
+input pagination {
+  skip: Int
+  limit: Int
+}
+
+type getAllType {
+  status: String
+  message: String
+  data: Traineedata
+}
+
+type Traineedata {
+  totalRecords: Int
+  count: Int
+  records: [Trainee]
+}
+
+type Trainee {
+  _id: String
+  name: String
+  email: String
+  role: String
+  password: String
+  createdAt: String
+}
+
+type UpdatedUser {
+    name: String
+    email: String
+    role: String
+    password: String
+    createdBy: String
+    createdAt: String
+    updatedBy: String
+    updatedAt: String
+
+}
+
