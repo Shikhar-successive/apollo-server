@@ -6,7 +6,7 @@ export default {
     const { user } = args;
     const { dataSources: { traineeApi } } = context;
     const response = await traineeApi.create(user);
-    pubsuObject.publish(constant.subscriptions.TRAINEE_ADDED, { traineeAdded: response.data.data });
+    pubsuObject.publish(constant.subscriptions.TRAINEE_ADDED, { traineeAdded: response });
     return response;
   },
 
@@ -15,7 +15,7 @@ export default {
     const { dataSources: { traineeApi } } = context;
     const response = await traineeApi.update(user);
     pubsuObject.publish(constant.subscriptions.TRAINEE_UPDATED,
-      { traineeUpdated: response.data.Details });
+      { traineeUpdated: response });
     return response;
   },
 
@@ -26,7 +26,7 @@ export default {
     const response = await traineeApi.deleteUser(originalId);
     pubsuObject.publish(
       constant.subscriptions.TRAINEE_DELETED,
-      { traineeDeleted: response.data.id },
+      { traineeDeleted: response },
     );
     return response;
   },

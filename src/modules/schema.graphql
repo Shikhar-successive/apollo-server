@@ -11,7 +11,7 @@ type Mutation {
 }
 
 type Subscription {
-  traineeAdded: User!
-  traineeUpdated: UpdatedUser!
-  traineeDeleted: ID!
+  traineeAdded: ResponseUser!
+  traineeUpdated: ResponseUser!
+  traineeDeleted: DeleteUser!
 }
