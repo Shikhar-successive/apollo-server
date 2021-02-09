@@ -29,10 +29,18 @@ type ResponseUser {
   data: Trainee
 }
 
+# union updateResponse = ResponseUser | updateError
+
 type getAllType {
   status: String
   message: String
   data: Traineedata
+}
+
+type updateError {
+  status: String
+  message: String
+  error: Error
 }
 
 type DeleteUser {
@@ -73,3 +81,7 @@ type UpdatedUser {
 
 }
 
+type Error {
+  name: String
+  message: String
+}
