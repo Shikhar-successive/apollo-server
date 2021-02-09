@@ -13,12 +13,8 @@ export class TraineeApi extends RESTDataSource {
   }
 
   async getAllTrainee({ skip, limit }) {
-    try {
-      const response = await this.get('/getall', { skip, limit });
-      return response;
-    } catch (error) {
-      return error.extensions.response.body;
-    }
+    const response = await this.get('/getall', { skip, limit });
+    return response;
   }
 
   async create(data) {
